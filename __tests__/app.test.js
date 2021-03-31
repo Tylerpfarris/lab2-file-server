@@ -7,7 +7,7 @@ describe('app routes', () => {
         const res = await request(app)
             .get('/');
         
-        expect(res.text).toEqual('hi');
+        expect(res.text).toEqual('welcomeeeeeeeeeeee');
     });
     
 
@@ -38,6 +38,23 @@ describe('app routes', () => {
             .get('/blue');
         
         expect(res.text).toEqual('<h1>blue</h1>');
+    });
+
+    it('establishes that the connection was made ', async() => {
+        await request(app)
+            .get('/index.html').expect(200);
+    });
+
+    it('returns the html from the given path ', async() => {
+        const res = await request(app)
+            .get('/index.html');
+        expect(res.text).toEqual(expect.stringContaining('<h1>THIS IS THE INDEX.HTML FILE</h1>'));
+    });
+
+    it('returns the html from the given path ', async() => {
+        const res = await request(app)
+            .get('/index.html');
+        expect(res.text.length).toEqual(37);
     });
     
 });
